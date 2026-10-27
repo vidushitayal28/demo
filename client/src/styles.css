@@ -333,3 +333,12 @@ textarea::placeholder,.text-input::placeholder { color: #b5afc3; }
   .auth-heading h2 { font-size: 29px; }
   .auth-copyright { bottom: 18px; }
 }
+
+/* Logout */
+.logout-button { display: inline-flex; align-items: center; gap: 6px; margin-left: 23px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; background: #fff; color: #6f6a85; font: inherit; font-size: 10px; font-weight: 600; cursor: pointer; transition: .2s; }
+.logout-button:hover { background: #fff0ef; border-color: #f3c4c4; color: #d64545; }
+.logout-icon { flex-shrink: 0; width: 30px; height: 30px; cursor: pointer; }
+.logout-icon:hover { background: #fff0ef; border-color: #f3c4c4; color: #d64545; }
+.profile-copy { min-width: 0; }
+.profile-copy b, .profile-copy span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 680px) { .logout-button { margin-left: 10px; padding: 7px 10px; } }

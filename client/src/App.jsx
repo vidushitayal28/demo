@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Activity, ArrowDownRight, ArrowUpRight, CalendarDays, Check, ChevronDown,
   ChevronRight, CircleHelp, Clock3, CloudSun, Heart, LayoutDashboard, Leaf,
-  Menu, MessageCircle, Moon, MoreHorizontal, Plus, Search, Settings2, ShieldCheck,
+  LogOut, Menu, MessageCircle, Moon, MoreHorizontal, Plus, Search, Settings2, ShieldCheck,
   Smile, Sparkles, Target, TrendingUp, X
 } from "lucide-react";
 import {
@@ -142,6 +142,10 @@ function Dashboard({ user, onLogout }) {
     }
   }
 
+  function handleLogoutClick() {
+    if (window.confirm("Log out of your space?")) onLogout();
+  }
+
   const currentMood = todayMood ? MOOD_MAP[todayMood.mood] : null;
 
   return (
@@ -173,9 +177,9 @@ function Dashboard({ user, onLogout }) {
         <div className="sidebar-bottom">
           <div className="privacy-note"><ShieldCheck size={16} /><span>Your feelings matter.<br /><b>Handle them with care.</b></span></div>
           <div className="profile-row">
-            <div className="avatar">Y</div>
-            <div className="profile-copy"><b>Your space</b><span>Personal dashboard</span></div>
-            <MoreHorizontal size={19} className="muted-icon" />
+            <div className="avatar">{(user?.name || "Y").charAt(0).toUpperCase()}</div>
+            <div className="profile-copy"><b>{user?.name || "Your space"}</b><span>{user?.email || "Personal dashboard"}</span></div>
+            <button className="icon-button logout-icon" onClick={handleLogoutClick} title="Log out" aria-label="Log out"><LogOut size={18} /></button>
           </div>
         </div>
       </aside>
@@ -189,6 +193,7 @@ function Dashboard({ user, onLogout }) {
           <div className="topbar-right">
             <div className={`connection-pill ${apiStatus}`}><span className="status-dot" />{apiStatus === "connected" ? "Synced with MongoDB" : apiStatus === "checking" ? "Connecting..." : "Database offline"}</div>
             <div className="top-date"><CalendarDays size={15} /> {dateLabel(new Date(), { month: "short", day: "numeric", year: "numeric" })}</div>
+            <button className="logout-button" onClick={handleLogoutClick}><LogOut size={15} /> Log out</button>
           </div>
         </header>
 
